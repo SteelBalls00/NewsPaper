@@ -47,6 +47,7 @@ class Post(models.Model):
     content = models.CharField(max_length=2048, default='Место для текста', verbose_name='Контент')
     rating = models.IntegerField(default=0)
 
+
     def like(self):
         self.rating += 1
         self.save()
@@ -74,3 +75,4 @@ class Comment(models.Model):
     def dislike(self):
         self.rating -= 1
         self.save()
+
