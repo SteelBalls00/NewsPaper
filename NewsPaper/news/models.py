@@ -47,8 +47,6 @@ class Post(models.Model):
     content = models.CharField(max_length=2048, default='Место для текста', verbose_name='Контент')
     rating = models.IntegerField(default=0)
 
-    def __str__(self):
-        return f'({self.title()} - {self.content[:124]})'
 
 
     def like(self):

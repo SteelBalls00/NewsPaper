@@ -20,7 +20,7 @@ from django.urls import path, include
 urlpatterns = [
    path('admin/', admin.site.urls),
    path('pages/', include('django.contrib.flatpages.urls')),
-   # # Делаем так, чтобы все адреса из нашего приложения (newspaper/urls.py)
+   # # Делаем так, чтобы все адреса из нашего приложения (news/urls.py)
    # # подключались к главному приложению с префиксом news/.
    path('news/', include('news.urls')),
 ]
