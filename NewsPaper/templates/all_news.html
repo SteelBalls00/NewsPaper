@@ -1,5 +1,7 @@
 {% extends 'flatpages/default.html' %}
 
+{% load censor_filter %}
+
 {% block title %}
 News
 {% endblock title %}
@@ -10,7 +12,7 @@ News
 <h3> {{ next_sale|default_if_none:"Чуть позже сообщим о распродаже!" }} </h3>
 <hr>
 {% if all_news %}
-<h1>Всего новостей {{ all_news|length }}</h1>
+<h1>Всего новостей: {{ all_news|length }}</h1>
     <table>
         <tr>
             <td>Заголовок</td>
@@ -19,9 +21,9 @@ News
         </tr>
         {% for news in all_news %}
         <tr>
-            <td>{{ news.title }}</td>
+            <td>{{ news.title|censor:news.title }}</td>
             <td>{{ news.time_create|date:'d.m.Y' }}</td>
-            <td>{{ news.content|truncatewords:20 }}</td>
+            <td>{{ news.content|truncatechars:20|censor:news.content }}</td>
         </tr>
         {% endfor %}
     </table>
