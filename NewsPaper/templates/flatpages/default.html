@@ -5,7 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Самые интересные новости</title>
+        <title>{% block title %}
+                {{ one_news.title }}
+                {% endblock title %}
+        </title>
 
 		{% load static %}
         <!-- Favicon-->
