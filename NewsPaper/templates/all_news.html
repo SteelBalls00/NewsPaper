@@ -6,9 +6,15 @@
 Новости
 {% endblock title %}
 
+{% load static %}
+
 {% block content %}
+<h1><a href="/">Регистрация/Авторизация</a></h1>{% csrf_token %}
+{% if is_not_premium %}
+<button> <a href="sign/upgrade/"> Хочу Premium!</a> </button>
+{% endif %}
 <h1>Все Новости</h1>
-<a href="http://127.0.0.1:8000/news/search" class="button">Поиск новостей</a>
+<h1><a href="http://127.0.0.1:8000/news/search" class="button">Поиск новостей</a></h1>
 
 <h3> {{ next_sale|default_if_none:"Чуть позже сообщим о распродаже!" }} </h3>
 

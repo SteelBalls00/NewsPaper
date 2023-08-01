@@ -1,5 +1,7 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.views.generic import TemplateView
 
 from .forms import PostForm
 from .models import Post
@@ -39,12 +41,10 @@ class NewsDetail(DetailView):
     context_object_name = 'one_news'
 
 
-class PostCreate(CreateView):
-    # Указываем нашу разработанную форму
+class PostCreate(PermissionRequiredMixin, CreateView):
+    permission_required = ('news.add_post')
     form_class = PostForm
-    # модель товаров
     model = Post
-    # и новый шаблон, в котором используется форма.
     template_name = 'edit_news.html'
     context_object_name = 'edit_news'
     success_url = reverse_lazy('post_list')
@@ -61,13 +61,16 @@ class PostCreate(CreateView):
         return super().form_valid(form)
 
 
-class PostUpdate(UpdateView):
+class PostUpdate(PermissionRequiredMixin, UpdateView):
+    permission_required = ('news.change_post')
     form_class = PostForm
     model = Post
     template_name = 'edit_news.html'
+    # success_url = reverse_lazy('post_list')
 
 
-class PostDelete(DeleteView):
+class PostDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = ('news.delete_post')
     model = Post
     template_name = 'delete_news.html'
     success_url = reverse_lazy('post_list')
