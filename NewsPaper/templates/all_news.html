@@ -37,8 +37,8 @@
             <td>{{ news.title|censor:news.title }}</td>
             <td>{{ news.time_create|date:'d.m.Y' }}</td>
             <td>{{ news.content|truncatechars:20|censor:news.content }}</td>
-            <td><a href="http://127.0.0.1:8000/news/{{ news.pk }}/edit" class="button">Редактировать</a></td>
-            <td><a href="http://127.0.0.1:8000/news/{{ news.pk }}/delete" class="button">Удалить</a></td>
+            <td><button><a href="http://127.0.0.1:8000/news/{{ news.pk }}/edit" class="button">Редактировать</a></button></td>
+            <td><button><a href="http://127.0.0.1:8000/news/{{ news.pk }}/delete" class="button">Удалить</a></button></td>
         </tr>
         {% endfor %}
     </table>
