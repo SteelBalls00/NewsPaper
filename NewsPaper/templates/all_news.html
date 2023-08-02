@@ -26,6 +26,8 @@
 <hr>
 {% if all_news %}
 <h1>Всего новостей: {{ all_news|length }}</h1>
+<button><a href="http://127.0.0.1:8000/news/create" class="button">Создай свою новость</a></button>
+<button><a href="http://127.0.0.1:8000/news/articles/create" class="button">или статью</a></button>
     <table>
         <tr>
             <td>Заголовок</td>
