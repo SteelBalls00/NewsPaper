@@ -19,9 +19,13 @@ class Author(models.Model):
         return Author.objects.filter(pk=self.id).values_list('user__username')[0][0]
 
 class Category(models.Model):
-    name = models.CharField(max_length=72, unique=True, verbose_name='Категории')
-
-    def __str__(self) -> str:
+    name = models.CharField(max_length=255, unique=True, verbose_name='Категории')
+    subscribers = models.ManyToManyField(User, related_name='categories', blank=True)
+    def subscribe(self):
+        ...
+    def get_category(self):
+        return self.name
+    def __str__(self):
         return self.name
 
 
@@ -48,8 +52,6 @@ class Post(models.Model):
     content = models.CharField(max_length=2048, default='Место для текста', verbose_name='Контент')
     rating = models.IntegerField(default=0)
 
-
-
     def like(self):
         self.rating += 1
         self.save()
@@ -63,7 +65,6 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('post_detail', args=[str(self.id)])
-
 
 
 class Comment(models.Model):

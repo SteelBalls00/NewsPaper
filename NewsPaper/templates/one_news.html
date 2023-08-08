@@ -11,5 +11,6 @@
 <h1>{{ one_news.title|censor:one_news.title }}</h1>
 <h2>{{ one_news.content|censor:one_news.content }}</h2>
 <h3>{{ one_news.time_create|date:'d.m.Y' }} г.</h3>
+<h3>Автор: {{ one_news.author }}</h3>
 
 {% endblock content %}

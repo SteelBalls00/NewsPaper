@@ -1,0 +1,21 @@
+<!--{% load custom_filters %}-->
+<!--{% load custom_tags %}-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudFlare.com/ajax/libs/milligram/1.4.1/milliqram.css">
+<title>
+    {% block title %} Django App {% endblock %}
+</title>
+</head>
+<body>
+    <div class="container">
+<!--        {% include 'news/inc/nav.html' %}-->
+        {% block content
+        {% endblock content %}
+    </div>
+</body>
+</html>
