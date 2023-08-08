@@ -23,8 +23,8 @@ class Category(models.Model):
     subscribers = models.ManyToManyField(User, related_name='categories', blank=True)
     def subscribe(self):
         ...
-    def get_category(self):
-        return self.name
+    # def get_category(self):
+    #     return self.name
     def __str__(self):
         return self.name
 

@@ -1,4 +1,5 @@
-from django.shortcuts import redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect, get_object_or_404, render
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy, resolve
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -131,32 +132,42 @@ class PostCategoryView(ListView):
         return context
 
 
-def subscribe_to_category(request, pk):
+# def subscribe_to_category(request, pk):
+#     user = request.user
+#     category = Category.objects.get(id=pk)
+#     if not category.subscribers.filter(id=user. id).exists():
+#         category.subscribers.add(user)
+#         email = user.email
+#         html = render_to_string('mail/suscribed.html',
+#                                 {
+#                                     'category': category,
+#                                     'user': user,
+#                                 },
+#                                 )
+#         msg = EmailMultiAlternatives (
+#             subject=f'{category} subscription',
+#             body='',
+#             from_email=DEFAULT_FROM_EMAIL,
+#             to=[email,],
+#         )
+#         msg.attach_alternative(html, 'text/html')
+#
+#         try:
+#             msg.send()
+#         except Exception as e:
+#                 print(e)
+#         return redirect('users:index')
+#     return redirect(request.META.get('HTTP_REFERER'))
+
+
+@login_required
+def subscribe(request, pk):
     user = request.user
     category = Category.objects.get(id=pk)
-    if not category.subscribers.filter(id=user. id).existsO:
-        category.subscribers.add(user)
-        email = user.email
-        html = render_to_string('mail/suscribed.html',
-                                {
-                                    'category': category,
-                                    'user': user,
-                                },
-                                )
-        msg = EmailMultiAlternatives (
-            subject=f'{category} subscription',
-            body='',
-            from_email=DEFAULT_FROM_EMAIL,
-            to=[email,],
-        )
-        msg.attach_alternative(html, 'text/html')
+    category.subscribers.add(user)
 
-        try:
-            msg.send()
-        except Exception as e:
-                print(e)
-        return redirect('users:index')
-    return redirect(request.META.get('HTTP_REFERER'))
+    message = 'Вы успешно подписались на рассылку новостей категории'
+    return render(request, 'subscribe/subscribed.html', {'category':category, 'message':message})
 
 
 class CategoryListView(ListView):

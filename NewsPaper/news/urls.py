@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import NewsList, NewsDetail, PostCreate, PostUpdate, PostDelete, PostSearch, subscribe_to_category, \
-   CategoryListView
+from .views import NewsList, NewsDetail, PostCreate, PostUpdate, PostDelete, PostSearch, \
+   CategoryListView, subscribe
 from django.contrib.auth.views import LoginView, LogoutView
 
 
@@ -16,7 +16,6 @@ urlpatterns = [
    path('articles/<int:pk>/delete/', PostDelete.as_view(), name='articles_delete'),
    path('sign/login/', LoginView.as_view(template_name='sign/login.html'), name='login'),
    path('sign/logout/', LogoutView.as_view(template_name='sign/logout.html'), name='logout'),
-   # path('subscribe/<int:pk>/', subscribe_to_category, name='subscribe'),
-   # path('<int:pk>/subscribe/', subscribe_to_category, name='subscribe'),
-   path('categories/<int:pk>', CategoryListView.as_view(), name='category_list')
+   path('categories/<int:pk>', CategoryListView.as_view(), name='category_list'),
+   path('categories/<int:pk>/subscribe', subscribe, name='subscribe'),
 ]
