@@ -39,15 +39,14 @@
         </tr>
         {% for news in all_news %}
         <tr>
-            <td>{{ news.title|censor:news.title }}</td>
-            <td>{{ news.categories }}</td>
+            <td><a href="http://127.0.0.1:8000/news/{{ news.pk }}"> {{ news.title|censor:news.title }}</a></td>
+            <td>{% for category in news.categories.all %}
+                    <a href="{% url 'category_list' category.id %}"> {{ category }}</a>
+                {% endfor %}</td>
             <td>{{ news.time_create|date:'d.m.Y' }}</td>
             <td>{{ news.content|truncatechars:20|censor:news.content }}</td>
             <td><button><a href="http://127.0.0.1:8000/news/{{ news.pk }}/edit" class="button">Редактировать</a></button></td>
             <td><button><a href="http://127.0.0.1:8000/news/{{ news.pk }}/delete" class="button">Удалить</a></button></td>
-            <td>   {% for category in news.categories.all %}
-                    <a href="{% url 'category_list' category.id %}"> {{ category }}</a>
-                {% endfor %}</td>
         </tr>
         {% endfor %}
     </table>

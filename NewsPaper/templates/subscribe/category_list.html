@@ -3,6 +3,7 @@
 News List
 {% endblock title %}
 {% block content %}
+<button> <a href="http://127.0.0.1:8000/news"> Главная</a> </button>
 <h1 class="text-center">Новости - <span class="text-muted fs-6 fw-normal"> Bceгo: {{ category_news_list|length }}</span> </h1>
 {% if is_not_subscriber %}
 <p class="text-center"><a href="{% url 'subscribe' category.id %}" class="btn btn-secondary btn-sm"> Подписаться</a> </p>

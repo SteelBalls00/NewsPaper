@@ -183,7 +183,7 @@ class CategoryListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # context['is not subscriber'] = not self.category.subscribers.filter(id=self.request.user.id).exists()
-        context['is not subscriber'] = self.request.user not in self.category.subscribers.all()
+        context['is_not_subscriber'] = self.request.user not in self.category.subscribers.all()
         context['category'] = self.category
         return context
 
