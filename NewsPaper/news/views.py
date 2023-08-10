@@ -170,6 +170,15 @@ def subscribe(request, pk):
     return render(request, 'subscribe/subscribed.html', {'category':category, 'message':message})
 
 
+@login_required
+def unsubscribe(request, pk):
+    user = request.user
+    category = Category.objects.get(id=pk)
+
+    if category.subscribers.filter(id=user.id).exists():
+        category.subscribers.remove(user)
+    return redirect('/')
+
 class CategoryListView(ListView):
     model = Post
     template_name = 'subscribe/category_list.html'

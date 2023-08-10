@@ -1,9 +1,9 @@
 from django.urls import path
 from .views import NewsList, NewsDetail, PostCreate, PostUpdate, PostDelete, PostSearch, \
-   CategoryListView, subscribe
+   CategoryListView, subscribe, unsubscribe
 from django.contrib.auth.views import LoginView, LogoutView
 
-
+# app_name = 'news'
 urlpatterns = [
    path('', NewsList.as_view(), name='post_list'),
    path('<int:pk>', NewsDetail.as_view(), name='post_detail'),
@@ -18,4 +18,6 @@ urlpatterns = [
    path('sign/logout/', LogoutView.as_view(template_name='sign/logout.html'), name='logout'),
    path('categories/<int:pk>', CategoryListView.as_view(), name='category_list'),
    path('categories/<int:pk>/subscribe', subscribe, name='subscribe'),
+   path('unsubscribe/<int:pk>', unsubscribe, name='unsubscribe'),
+
 ]

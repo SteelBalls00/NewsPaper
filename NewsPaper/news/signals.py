@@ -18,10 +18,8 @@ def send_notifications(preview, pk, title, subscribers):
     msg = EmailMultiAlternatives(
         subject=title,
         body='',
-        from_email='steelballs00@yandex.ru',
-        # from_email=settings.DEFAULT_FROM_EMAIL,
-        to=['predator7151753@mail.ru'],
-        # to=subscribers,
+        from_email=settings.DEFAULT_FROM_EMAIL,
+        to=subscribers,
     )
 
     msg.attach_alternative(html_content, 'text/html')
@@ -37,7 +35,6 @@ def notify_about_new_post(sender, instance, **kwargs):
         for category in categories:
             subscribers += category.subscribers.all()
 
-        # subscribers = [s.email for s in subscribers]
-        subscribers = ['predator7151753@mail.ru', 'predator7151753@gmail.com', ]
+        subscribers = [s.email for s in subscribers]
 
         send_notifications(instance.preview, instance.pk, instance.title, subscribers)

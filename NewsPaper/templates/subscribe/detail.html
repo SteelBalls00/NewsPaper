@@ -1,5 +1,5 @@
 <h3>
-<!--    <a href="{% url 'news/{{ news.pk }}' post.id %}">-->
+    <a href="{% url 'news/{{ news.pk }}' post.id %}">
         {{ post.title }}
     </a>
 </h3>
@@ -11,5 +11,3 @@ Category:
 <a href="{% url 'news:category' c.id %}" class="category">{{c.name}}</a>
 {% endfor %}
 </p>
-
-{% include 'subscribe/posts.html' %}

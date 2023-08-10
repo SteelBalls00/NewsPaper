@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'appointment.apps.AppointmentConfig',
-    # 'NewsPaper.news.apps.NewsConfig'
+    'django_apscheduler',
 ]
 
 SITE_ID = 1
@@ -141,7 +141,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_SUBJECT_PREFIX = 'Приветствие '
 
 ACCOUNT_FORMS = {'signup': 'sign.models.BasicSignupForm'}
 
@@ -151,5 +152,8 @@ EMAIL_HOST_USER = 'SteelBalls00'  # ваше имя пользователя, н
 EMAIL_HOST_PASSWORD = 'tfcjwxiewpscphnb'  # пароль от почты
 EMAIL_USE_SSL = True  # Яндекс использует ssl, подробнее о том, что это, почитайте в дополнительных источниках, но включать его здесь обязательно
 DEFAULT_FROM_EMAIL = 'SteelBalls00@yandex.ru'
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# if DEBUG:
+#     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+APSCHEDULER_DATETIME_FORMAT = 'N j, Y, F:s a'
+APSCHEDULER_RUN_NOW_TIMEOUT = 25

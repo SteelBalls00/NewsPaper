@@ -20,12 +20,10 @@ class AppointmentView(View):
         )
         appointment.save()
 
-        # получаем наш html
         html_content = render_to_string(
             'appointment_created.html', {'appointment': appointment, }
         )
 
-        # в конструкторе уже знакомые нам параметры, да? Называются правда немного по-другому, но суть та же.
         msg = EmailMultiAlternatives(
             subject=f'{appointment.client_name} {appointment.date.strftime("%Y-%M-%d")}',
             body=appointment.message,  # это то же, что и message
