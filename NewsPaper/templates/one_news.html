@@ -7,6 +7,7 @@
 {% endblock title %}
 
 {% block content %}
+
 <button> <a href="http://127.0.0.1:8000/news"> Главная</a> </button>
 <h1>{{ one_news.title|censor:one_news.title }}</h1>
 <h2>{{ one_news.content|censor:one_news.content }}</h2>

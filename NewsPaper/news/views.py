@@ -42,6 +42,8 @@ class NewsList(ListView):
         return context
 
 
+
+
 class NewsDetail(DetailView):
     model = Post
     template_name = 'one_news.html'
@@ -195,4 +197,5 @@ class CategoryListView(ListView):
         context['is_not_subscriber'] = self.request.user not in self.category.subscribers.all()
         context['category'] = self.category
         return context
+
 
